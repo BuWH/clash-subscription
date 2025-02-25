@@ -124,11 +124,11 @@ proxies:
       - h3
   - name: azure-sg-backup-tuic
     server: wenhelog.com
-    port: 23333
+    port: 41430
     type: tuic
     version: 5
-    uuid: ce1d92ea-06dc-4135-9c2a-c40804b7c35d
-    password: ce1d92ea-06dc-4135-9c2a-c40804b7c35d
+    uuid: 557255a3-b5ca-4b9e-9da9-e1984bba1ac7
+    password: 557255a3-b5ca-4b9e-9da9-e1984bba1ac7
     sni: wenhelog.com
     skip-cert-verify: false
     alpn:

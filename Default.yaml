@@ -95,15 +95,6 @@ dns:
 proxies:
   - name: azure-hk-trojan
     type: trojan
-    server: wenhelog.com
-    port: 443
-    password: 31b58cea-0689-457e-9232-ad4261795453
-    skip-cert-verify: true
-    udp: true
-    alpn:
-      - http/1.1
-  - name: azure-hk-trojan-2
-    type: trojan
     server: wenhe.one
     port: 443
     password: 70213703-9946-4330-b8bc-7c32ad590cc8
@@ -120,6 +111,28 @@ proxies:
     udp: true
     alpn:
       - http/1.1
+  - name: azure-sg-tuic
+    server: hermanwen.xyz
+    port: 51296
+    type: tuic
+    version: 5
+    uuid: 7c6695a0-f18e-4afb-ba78-4f7c90a54206
+    password: 7c6695a0-f18e-4afb-ba78-4f7c90a54206
+    sni: hermanwen.xyz
+    skip-cert-verify: false
+    alpn:
+      - h3
+  - name: azure-sg-backup-tuic
+    server: wenhelog.com
+    port: 41430
+    type: tuic
+    version: 5
+    uuid: 557255a3-b5ca-4b9e-9da9-e1984bba1ac7
+    password: 557255a3-b5ca-4b9e-9da9-e1984bba1ac7
+    sni: wenhelog.com
+    skip-cert-verify: false
+    alpn:
+      - h3
 
 proxy-groups:
   # 代理的转发链, 在 proxies 中不应该包含 relay. 不支持 UDP.
@@ -141,7 +154,8 @@ proxy-groups:
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Want_Want_Letter.png
     proxies:
-      - azure-hk-trojan-2
+      - azure-sg-tuic
+      - azure-sg-backup-tuic
       - azure-hk-trojan
       - azure-us-trojan
       - TAG-select
@@ -150,7 +164,8 @@ proxy-groups:
   - name: Fastest
     type: url-test
     proxies:
-      - azure-hk-trojan-2
+      - azure-sg-tuic
+      - azure-sg-backup-tuic
       - azure-hk-trojan
       - azure-us-trojan
     url: "http://www.gstatic.com/generate_204"
@@ -159,7 +174,8 @@ proxy-groups:
   - name: Fallback
     type: fallback
     proxies:
-      - azure-hk-trojan-2
+      - azure-sg-tuic
+      - azure-sg-backup-tuic
       - azure-hk-trojan
       - azure-us-trojan
     url: "http://www.gstatic.com/generate_204"
@@ -178,7 +194,8 @@ proxy-groups:
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Server.png
     proxies:
       - PROXY
-      - azure-hk-trojan-2
+      - azure-sg-tuic
+      - azure-sg-backup-tuic
       - azure-hk-trojan
       - azure-us-trojan
       - TAG-select
@@ -190,7 +207,8 @@ proxy-groups:
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Proxy.png
     proxies:
       - Fallback
-      - azure-hk-trojan-2
+      - azure-sg-tuic
+      - azure-sg-backup-tuic
       - azure-hk-trojan
       - azure-us-trojan
       - TAG-select
@@ -294,7 +312,7 @@ rule-providers:
     type: http
     behavior: domain
     format: text
-    url: "http://script.hub/file/_start_/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Gemini/Gemini.yaml/_end_/Gemini.list?type=rule-set&target=stash-rule-set&del=true"
+    url: "http://script.hub/file/_start_/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Surge/Gemini/Gemini.list/_end_/Gemini.list?type=rule-set&target=stash-domain-set&del=true"
     path: ./ruleset/gemini.yaml
     interval: 86400
 rules:
