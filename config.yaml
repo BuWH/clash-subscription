@@ -133,6 +133,16 @@ proxies:
     skip-cert-verify: false
     alpn:
       - h3
+  - name: azure-sg-backup-hy2                           
+    type: hysteria2                                      
+    server: wenhelog.com                               
+    port: 32223                                
+    auth: 557255a3-b5ca-4b9e-9da9-e1984bba1ac7                          
+    alpn:
+      - h3
+    sni: wenhelog.com                               
+    skip-cert-verify: false
+    fast-open: true
 
 proxy-groups:
   # 代理的转发链, 在 proxies 中不应该包含 relay. 不支持 UDP.
@@ -156,6 +166,7 @@ proxy-groups:
     proxies:
       - azure-sg-tuic
       - azure-sg-backup-tuic
+      - azure-sg-backup-hy2
       - azure-hk-trojan
       - azure-us-trojan
       - TAG-select
@@ -166,6 +177,7 @@ proxy-groups:
     proxies:
       - azure-sg-tuic
       - azure-sg-backup-tuic
+      - azure-sg-backup-hy2
       - azure-hk-trojan
       - azure-us-trojan
     url: "http://www.gstatic.com/generate_204"
@@ -196,6 +208,7 @@ proxy-groups:
       - PROXY
       - azure-sg-tuic
       - azure-sg-backup-tuic
+      - azure-sg-backup-hy2
       - azure-hk-trojan
       - azure-us-trojan
       - TAG-select
@@ -209,6 +222,7 @@ proxy-groups:
       - Fallback
       - azure-sg-tuic
       - azure-sg-backup-tuic
+      - azure-sg-backup-hy2
       - azure-hk-trojan
       - azure-us-trojan
       - TAG-select
