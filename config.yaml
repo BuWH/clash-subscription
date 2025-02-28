@@ -111,38 +111,22 @@ proxies:
     udp: true
     alpn:
       - http/1.1
-  - name: azure-sg-tuic
+  - name: azure-sg-trojan
+    type: trojan
     server: hermanwen.xyz
-    port: 51296
-    type: tuic
-    version: 5
-    uuid: 7c6695a0-f18e-4afb-ba78-4f7c90a54206
-    password: 7c6695a0-f18e-4afb-ba78-4f7c90a54206
+    port: 11282
+    password: 6f0fe415-8803-428a-a336-97b9300a9b37
+    client-fingerprint: chrome
+    udp: true
     sni: hermanwen.xyz
-    skip-cert-verify: false
-    alpn:
-      - h3
-  - name: azure-sg-backup-tuic
+  - name: azure-sg-backup-trojan
+    type: trojan
     server: wenhelog.com
-    port: 41430
-    type: tuic
-    version: 5
-    uuid: 557255a3-b5ca-4b9e-9da9-e1984bba1ac7
-    password: 557255a3-b5ca-4b9e-9da9-e1984bba1ac7
+    port: 35011
+    password: df9121df-dc55-4354-b333-17a3ed6a2ec0
+    client-fingerprint: chrome
+    udp: true
     sni: wenhelog.com
-    skip-cert-verify: false
-    alpn:
-      - h3
-  - name: azure-sg-backup-hy2                           
-    type: hysteria2                                      
-    server: wenhelog.com                               
-    port: 32223                                
-    auth: 557255a3-b5ca-4b9e-9da9-e1984bba1ac7                          
-    alpn:
-      - h3
-    sni: wenhelog.com                               
-    skip-cert-verify: false
-    fast-open: true
 
 proxy-groups:
   # 代理的转发链, 在 proxies 中不应该包含 relay. 不支持 UDP.
@@ -164,9 +148,8 @@ proxy-groups:
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Want_Want_Letter.png
     proxies:
-      - azure-sg-tuic
-      - azure-sg-backup-tuic
-      - azure-sg-backup-hy2
+      - azure-sg-trojan
+      - azure-sg-backup-trojan
       - azure-hk-trojan
       - azure-us-trojan
       - TAG-select
@@ -175,9 +158,8 @@ proxy-groups:
   - name: Fastest
     type: url-test
     proxies:
-      - azure-sg-tuic
-      - azure-sg-backup-tuic
-      - azure-sg-backup-hy2
+      - azure-sg-trojan
+      - azure-sg-backup-trojan
       - azure-hk-trojan
       - azure-us-trojan
     url: "http://www.gstatic.com/generate_204"
@@ -186,8 +168,8 @@ proxy-groups:
   - name: Fallback
     type: fallback
     proxies:
-      - azure-sg-tuic
-      - azure-sg-backup-tuic
+      - azure-sg-trojan
+      - azure-sg-backup-trojan
       - azure-hk-trojan
       - azure-us-trojan
     url: "http://www.gstatic.com/generate_204"
@@ -206,9 +188,8 @@ proxy-groups:
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Server.png
     proxies:
       - PROXY
-      - azure-sg-tuic
-      - azure-sg-backup-tuic
-      - azure-sg-backup-hy2
+      - azure-sg-trojan
+      - azure-sg-backup-trojan
       - azure-hk-trojan
       - azure-us-trojan
       - TAG-select
@@ -220,9 +201,8 @@ proxy-groups:
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Proxy.png
     proxies:
       - Fallback
-      - azure-sg-tuic
-      - azure-sg-backup-tuic
-      - azure-sg-backup-hy2
+      - azure-sg-trojan
+      - azure-sg-backup-trojan
       - azure-hk-trojan
       - azure-us-trojan
       - TAG-select
