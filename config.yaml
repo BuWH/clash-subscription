@@ -57,41 +57,24 @@ hosts:
 
 # DNS 服务器配置(可选；若不配置，程序内置的 DNS 服务会被关闭)
 dns:
-  enable: true
-  enhanced-mode: fake-ip # 或 redir-host
-  # use-hosts: true # 查询 hosts 并返回 IP 记录
-  # 支持 UDP / TCP / DoT / DoH 协议的 DNS 服务，可以指明具体的连接端口号。
-  # 所有 DNS 请求将会直接发送到服务器，不经过任何代理。
-  # Clash 会使用最先获得的解析记录回复 DNS 请求
+  # 以下填写的 DNS 服务器将用于解析 DNS 服务的域名
+  # 仅填写 DNS 服务器的 IP 地址
+  default-nameserver:
+    - 223.5.5.5
+    - 114.114.114.114
+  # 支持 UDP / TCP / DoT / DoH / DoQ 协议的 DNS 服务，可以指明具体的连接端口号。
+  # 所有 DNS 请求将直接发送到服务器，不经过任何代理。
+  # Stash 会使用最先获得的解析记录回复 DNS 请求
   nameserver:
-  - https://dns.alidns.com/dns-query
-  fallback:
-  - https://1.1.1.1/dns-query
-  - https://dns.google/dns-query
-  # 当 fallback 参数被配置时, DNS 请求将同时发送至上方 nameserver 列表和下方 fallback 列表中配置的所有 DNS 服务器.
-  # 当解析得到的 IP 地址的地理位置不是 CN 时，clash 将会选用 fallback 中 DNS 服务器的解析结果。
-  # fallback:
-  #   - https://dns.google/dns-query
-
-  # 如果使用 nameserver 列表中的服务器解析的 IP 地址在下方列表中的子网中，则它们被认为是无效的，
-  # Clash 会选用 fallback 列表中配置 DNS 服务器解析得到的结果。
-  #
-  # 当 fallback-filter.geoip 为 true 且 IP 地址的地理位置为 CN 时，
-  # Clash 会选用 nameserver 列表中配置 DNS 服务器解析得到的结果。
-  #
-  # 当 fallback-filter.geoip 为 false, 如果解析结果不在 fallback-filter.ipcidr 范围内，
-  # Clash 总会选用 nameserver 列表中配置 DNS 服务器解析得到的结果。
-  #
-  # 采取以上逻辑进行域名解析是为了对抗 DNS 投毒攻击。
-  fallback-filter:
-    geoip: false
-    ipcidr:
-      - 240.0.0.0/4
-      - 0.0.0.0/32
-      # domain:
-      #   - '+.google.com'
-      #   - '+.facebook.com'
-      #   - '+.youtube.com'
+    # 不建议配置超过 2 个 DNS 服务器，会增加系统功耗
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
+ 
+  # 跳过证书验证，解决部分兼容性问题 https://help.nextdns.io/t/g9hdkjz
+  skip-cert-verify: true
+ 
+  # DNS 查询跟随代理规则
+  follow-rule: false
 proxies:
   - name: azure-hk-trojan
     type: trojan
@@ -259,18 +242,6 @@ rule-providers:
     url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/direct.txt"
     path: ./ruleset/direct.yaml
     interval: 86400
-  gfw:
-    behavior: domain
-    format: yaml
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/gfw.txt"
-    path: ./ruleset/gfw.yaml
-    interval: 86400
-  greatfire:
-    behavior: domain
-    format: yaml
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/greatfire.txt"
-    path: ./ruleset/greatfire.yaml
-    interval: 86400
   tld-not-cn:
     behavior: domain
     format: yaml
@@ -309,7 +280,22 @@ rule-providers:
     url: "http://script.hub/file/_start_/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Surge/Gemini/Gemini.list/_end_/Gemini.list?type=rule-set&target=stash-domain-set&del=true"
     path: ./ruleset/gemini.yaml
     interval: 86400
+  claude:
+    type: http
+    behavior: domain
+    format: text
+    url: "http://script.hub/file/_start_/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Claude/Claude.list/_end_/Claude.list?type=rule-set&target=stash-rule-set&del=true"
+    path: ./ruleset/claude.yaml
+    interval: 86400
+  crypto:
+    type: http
+    behavior: domain
+    format: text
+    url: "http://script.hub/file/_start_/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Crypto/Crypto.list/_end_/Crypto.list?type=rule-set&target=stash-rule-set&del=true"
+    path: ./ruleset/crypto.yaml
+    interval: 86400
 rules:
+  # DIRECT
   - PROCESS-NAME,v2ray,DIRECT
   - PROCESS-NAME,xray,DIRECT
   - PROCESS-NAME,clash,DIRECT
@@ -329,28 +315,26 @@ rules:
   - PROCESS-NAME,NetTransport,DIRECT
   - PROCESS-NAME,uTorrent,DIRECT
   - PROCESS-NAME,WebTorrent,DIRECT
-  - DOMAIN,clash.razord.top,DIRECT
   - DOMAIN,yacd.haishan.me,DIRECT
+  - RULE-SET,direct,DIRECT
+  - RULE-SET,lancidr,DIRECT
+  - RULE-SET,cncidr,DIRECT
+  - GEOIP,LAN,DIRECT
+  - GEOIP,CN,DIRECT
   - IP-CIDR,192.168.0.0/8,DIRECT
-  - DOMAIN-KEYWORD,deribit,PROXY
-  - DOMAIN-KEYWORD,newrelic,PROXY
-  - DOMAIN,manhuafen.com,PROXY
+  # CRYPTO
+  - RULE-SET,crypto,CRYPTO
+  # AI
   - DOMAIN-KEYWORD,perplexity,AI_SERVICE
   - DOMAIN-KEYWORD,pplx,AI_SERVICE
-  - DOMAIN-KEYWORD,binance,CRYPTO
-  - DOMAIN-KEYWORD,bnappzh,CRYPTO
-  - DOMAIN-KEYWORD,bntrace,CRYPTO
-  - RULE-SET,reject,REJECT
   - RULE-SET,openai,AI_SERVICE
   - RULE-SET,gemini,AI_SERVICE
+  - RULE-SET,claude,AI_SERVICE
+  # APPLE
   - RULE-SET,icloud,APPLE
   - RULE-SET,apple,APPLE
   - RULE-SET,google,PROXY
   - RULE-SET,proxy,PROXY
-  - RULE-SET,direct,DIRECT
-  - RULE-SET,lancidr,DIRECT
-  - RULE-SET,cncidr,DIRECT
   - RULE-SET,telegramcidr,PROXY
-  - GEOIP,LAN,DIRECT
-  - GEOIP,CN,DIRECT
+  - RULE-SET,reject,REJECT
   - MATCH,PROXY
