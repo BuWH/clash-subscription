@@ -210,6 +210,12 @@ proxy-providers:
 #     interval: 36000
 #     url: http://www.gstatic.com/generate_204
 rule-providers:
+  dunai_ad:
+    behavior: domain
+    format: yaml
+    url: "http://script.hub/file/_start_/https://limbopro.com/Adblock4limbo.list/_end_/Adblock4limbo.list?type=rule-set&target=stash-rule-set&del=true"
+    path: ./ruleset/dunai_ad.yaml
+    interval: 86400
   reject:
     behavior: domain
     format: yaml
@@ -299,6 +305,9 @@ rule-providers:
     path: ./ruleset/crypto.yaml
     interval: 86400
 rules:
+  # REJECT
+  - RULE-SET,dunai_ad,REJECT
+  - RULE-SET,reject,REJECT
   # DIRECT
   - PROCESS-NAME,v2ray,DIRECT
   - PROCESS-NAME,xray,DIRECT
@@ -340,5 +349,4 @@ rules:
   - RULE-SET,google,PROXY
   - RULE-SET,proxy,PROXY
   - RULE-SET,telegramcidr,PROXY
-  - RULE-SET,reject,REJECT
   - MATCH,PROXY
