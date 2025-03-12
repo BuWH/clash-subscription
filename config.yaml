@@ -216,6 +216,12 @@ rule-providers:
     url: "http://script.hub/file/_start_/https://limbopro.com/Adblock4limbo.list/_end_/Adblock4limbo.list?type=rule-set&target=stash-rule-set&del=true"
     path: ./ruleset/dunai_ad.yaml
     interval: 86400
+  anti_ad:
+    behavior: domain
+    format: yaml
+    url: "http://script.hub/file/_start_/https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-surge2.txt/_end_/anti-ad-surge2.list?type=rule-set&target=stash-rule-set&del=true"
+    path: ./ruleset/anti_ad.yaml
+    interval: 86400
   reject:
     behavior: domain
     format: yaml
@@ -307,6 +313,7 @@ rule-providers:
 rules:
   # REJECT
   - RULE-SET,dunai_ad,REJECT
+  - RULE-SET,anti_ad,REJECT
   - RULE-SET,reject,REJECT
   # DIRECT
   - PROCESS-NAME,v2ray,DIRECT
