@@ -229,7 +229,7 @@ rule-providers:
     path: ./ruleset/reject.yaml
     interval: 86400
   applications:
-    behavior: domain
+    behavior: classical
     format: yaml
     url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/applications.txt"
     path: ./ruleset/applications.yaml
