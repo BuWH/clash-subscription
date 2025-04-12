@@ -101,7 +101,7 @@ proxies:
   - name: azure-sg-trojan
     type: trojan
     server: hermanwen.xyz
-    port: 11282
+    port: 29144
     password: 6f0fe415-8803-428a-a336-97b9300a9b37
     client-fingerprint: chrome
     udp: true
@@ -199,7 +199,7 @@ proxy-groups:
       - TAG
 proxy-providers:
   TAG:
-    url: https://chomthong.central-world.org/api/v1/client/subscribe?token=ff9d01f639de98c709269af5b6b11713
+    url: https://huaikhwang.central-world.org/api/v1/trails/bolster?token=ff9d01f639de98c709269af5b6b11713
     interval: 3600
     filter: '家宽'
 # test:
