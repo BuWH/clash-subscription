@@ -78,7 +78,7 @@ dns:
   enhanced-mode: fake-ip
  
   # DNS 查询跟随代理规则
-  follow-rule: false
+  follow-rule: true
 proxies:
   - name: azure-hk-trojan
     type: trojan
