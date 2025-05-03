@@ -316,19 +316,25 @@ rule-providers:
     url: "http://script.hub/file/_start_/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Crypto/Crypto.list/_end_/Crypto.list?type=rule-set&target=stash-rule-set&del=true"
     path: ./ruleset/crypto.yaml
     interval: 86400
+  reddit:
+    type: http
+    behavior: domain
+    format: text
+    url: "http://script.hub/file/_start_/https://github.com/blackmatrix7/ios_rule_script/raw/refs/heads/master/rule/Surge/Reddit/Reddit.list/_end_/Reddit.list?type=rule-set&target=stash-rule-set&del=true&jqEnabled=true"
+    path: ./ruleset/reddit.yaml
+    interval: 86400
+  linkedin:
+    type: http
+    behavior: domain
+    format: text
+    url: "http://script.hub/file/_start_/https://github.com/blackmatrix7/ios_rule_script/raw/refs/heads/master/rule/Surge/LinkedIn/LinkedIn.list/_end_/LinkedIn.list?type=rule-set&target=stash-rule-set&del=true&jqEnabled=true"
+    path: ./ruleset/linkedin.yaml
+    interval: 86400
 rules:
   # REJECT
   - RULE-SET,dunai_ad,REJECT
   - RULE-SET,anti_ad,REJECT
   - RULE-SET,reject,REJECT
-  # DIRECT
-  - RULE-SET,applications,DIRECT
-  - RULE-SET,direct,DIRECT
-  - RULE-SET,lancidr,DIRECT
-  - RULE-SET,cncidr,DIRECT
-  - GEOIP,LAN,DIRECT
-  - GEOIP,CN,DIRECT
-  - IP-CIDR,192.168.0.0/8,DIRECT
   # CRYPTO
   - RULE-SET,crypto,CRYPTO
   # AI
@@ -340,7 +346,19 @@ rules:
   # APPLE
   - RULE-SET,icloud,APPLE
   - RULE-SET,apple,APPLE
+  # PROXY
   - RULE-SET,google,PROXY
+  - RULE-SET,reddit,PROXY
+  - RULE-SET,linkedin,PROXY
   - RULE-SET,proxy,PROXY
   - RULE-SET,telegramcidr,PROXY
+  # DIRECT
+  - RULE-SET,applications,DIRECT
+  - RULE-SET,direct,DIRECT
+  - RULE-SET,lancidr,DIRECT
+  - RULE-SET,cncidr,DIRECT
+  - GEOIP,LAN,DIRECT
+  - GEOIP,CN,DIRECT
+  - IP-CIDR,192.168.0.0/8,DIRECT
+  # DEFAULT
   - MATCH,PROXY
