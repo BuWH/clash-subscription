@@ -80,15 +80,32 @@ dns:
   # DNS 查询跟随代理规则
   follow-rule: true
 proxies:
-  - name: azure-us-trojan
-    type: trojan
-    server: buwenhe.com
-    port: 443
-    password: 21a7a119-5e89-487b-b813-bf15152b3d19
-    skip-cert-verify: true
-    udp: true
-    alpn:
-      - http/1.1
+  - name: azure-hk-vless
+    type: vless
+    server: 20.2.232.71
+    port: 24758
+    uuid: 70213703-9946-4330-b8bc-7c32ad590cc8
+    flow: xtls-rprx-vision
+    network: tcp
+    tls: true
+    client-fingerprint: chrome
+    sni: download-installer.cdn.mozilla.net
+    reality-opts:
+      public-key: _PHCvG_gMXh2onlOU6cjisH97Lfl6rrh-PCxBY4rmEQ
+      short-id: 6ba85179e30d4fc2
+  - name: azure-us-vless
+    type: vless
+    server: 20.14.85.196
+    port: 10917
+    uuid: 21a7a119-5e89-487b-b813-bf15152b3d19
+    flow: xtls-rprx-vision
+    network: tcp
+    tls: true
+    client-fingerprint: chrome
+    sni: www.cisco.com
+    reality-opts:
+      public-key: XMdi3nQLeIvHOiKaeMOk4vVwZbJe1GVHVWlBmwBEsjQ
+      short-id: 6ba85179e30d4fc2
   - name: azure-sg-vless
     type: vless
     server: 20.198.179.24
@@ -147,7 +164,8 @@ proxy-groups:
       - azure-sg-vless
       - azure-sg-backup-vless
       - azure-sg-backup-trojan
-      - azure-us-trojan
+      - azure-us-vless
+      - azure-hk-vless
       - TAG-select
       - DIRECT
   # url-test 可以自动选择与指定 URL 测速后，延迟最短的服务器
@@ -157,7 +175,8 @@ proxy-groups:
       - azure-sg-vless
       - azure-sg-backup-vless
       - azure-sg-backup-trojan
-      - azure-us-trojan
+      - azure-us-vless
+      - azure-hk-vless
     url: "http://www.gstatic.com/generate_204"
     interval: 300
   # fallback 可以尽量按照用户书写的服务器顺序，在确保服务器可用的情况下，自动选择服务器
@@ -167,7 +186,8 @@ proxy-groups:
       - azure-sg-vless
       - azure-sg-backup-vless
       - azure-sg-backup-trojan
-      - azure-us-trojan
+      - azure-hk-vless
+      - azure-us-vless
     url: "http://www.gstatic.com/generate_204"
     interval: 300
   # # load-balance 可以使相同 eTLD 请求在同一条代理线路上
@@ -187,7 +207,8 @@ proxy-groups:
       - azure-sg-vless
       - azure-sg-backup-vless
       - azure-sg-backup-trojan
-      - azure-us-trojan
+      - azure-us-vless
+      - azure-hk-vless
       - TAG-select
       - DIRECT
   # select 用来允许用户手动选择 代理服务器 或 服务器组
@@ -200,7 +221,8 @@ proxy-groups:
       - azure-sg-vless
       - azure-sg-backup-vless
       - azure-sg-backup-trojan
-      - azure-us-trojan
+      - azure-us-vless
+      - azure-hk-vless
       - TAG-select
   - name: TAG-select
     type: select
