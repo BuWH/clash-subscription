@@ -86,7 +86,7 @@ dns:
     # === Apple Software Update Service ===
     - 'swscan.apple.com'
     - 'mesu.apple.com'
-    # === Windows 10 Connnect Detection ===
+    # === Windows 10 Connect Detection ===
     - '*.msftconnecttest.com'
     - '*.msftncsi.com'
     # === NTP Service ===
