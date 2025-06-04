@@ -80,15 +80,6 @@ dns:
   # DNS 查询跟随代理规则
   follow-rule: true
 proxies:
-  - name: azure-hk-trojan
-    type: trojan
-    server: wenhe.one
-    port: 443
-    password: 70213703-9946-4330-b8bc-7c32ad590cc8
-    skip-cert-verify: true
-    udp: true
-    alpn:
-      - http/1.1
   - name: azure-us-trojan
     type: trojan
     server: buwenhe.com
@@ -98,14 +89,19 @@ proxies:
     udp: true
     alpn:
       - http/1.1
-  - name: azure-sg-trojan
-    type: trojan
-    server: hermanwen.xyz
-    port: 29144
-    password: 6f0fe415-8803-428a-a336-97b9300a9b37
+  - name: azure-sg-vless
+    type: vless
+    server: 20.198.179.24
+    port: 17298
+    uuid: 6f0fe415-8803-428a-a336-97b9300a9b37
+    flow: xtls-rprx-vision
+    network: tcp
+    tls: true
     client-fingerprint: chrome
-    udp: true
-    sni: hermanwen.xyz
+    sni: gateway.icloud.com
+    reality-opts:
+      public-key: _2Z1O38_btRhhchpmIenke88_0C66AoO0hqw8HwNaBY
+      short-id: 6ba85179e30d4fc2
   - name: azure-sg-backup-trojan
     type: trojan
     server: wenhelog.com
@@ -114,6 +110,19 @@ proxies:
     client-fingerprint: chrome
     udp: true
     sni: wenhelog.com
+  - name: azure-sg-backup-vless
+    type: vless
+    server: 20.198.253.47
+    port: 18255
+    uuid: df9121df-dc55-4354-b333-17a3ed6a2ec0
+    flow: xtls-rprx-vision
+    network: tcp
+    tls: true
+    client-fingerprint: chrome
+    sni: www.lovelive-anime.jp
+    reality-opts:
+      public-key: 5VHIfCIY5FnLffkrbGCKVbMzfFfFQCnM3mxIAdkwpXw
+      short-id: 6ba85179e30d4fc2
 
 proxy-groups:
   # 代理的转发链, 在 proxies 中不应该包含 relay. 不支持 UDP.
@@ -135,9 +144,9 @@ proxy-groups:
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Want_Want_Letter.png
     proxies:
-      - azure-sg-trojan
+      - azure-sg-vless
+      - azure-sg-backup-vless
       - azure-sg-backup-trojan
-      - azure-hk-trojan
       - azure-us-trojan
       - TAG-select
       - DIRECT
@@ -145,9 +154,9 @@ proxy-groups:
   - name: Fastest
     type: url-test
     proxies:
-      - azure-sg-trojan
+      - azure-sg-vless
+      - azure-sg-backup-vless
       - azure-sg-backup-trojan
-      - azure-hk-trojan
       - azure-us-trojan
     url: "http://www.gstatic.com/generate_204"
     interval: 300
@@ -155,9 +164,9 @@ proxy-groups:
   - name: Fallback
     type: fallback
     proxies:
-      - azure-sg-trojan
+      - azure-sg-vless
+      - azure-sg-backup-vless
       - azure-sg-backup-trojan
-      - azure-hk-trojan
       - azure-us-trojan
     url: "http://www.gstatic.com/generate_204"
     interval: 300
@@ -175,9 +184,9 @@ proxy-groups:
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Server.png
     proxies:
       - PROXY
-      - azure-sg-trojan
+      - azure-sg-vless
+      - azure-sg-backup-vless
       - azure-sg-backup-trojan
-      - azure-hk-trojan
       - azure-us-trojan
       - TAG-select
       - DIRECT
@@ -188,9 +197,9 @@ proxy-groups:
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Proxy.png
     proxies:
       - Fallback
-      - azure-sg-trojan
+      - azure-sg-vless
+      - azure-sg-backup-vless
       - azure-sg-backup-trojan
-      - azure-hk-trojan
       - azure-us-trojan
       - TAG-select
   - name: TAG-select
