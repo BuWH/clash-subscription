@@ -119,6 +119,17 @@ proxies:
     reality-opts:
       public-key: _2Z1O38_btRhhchpmIenke88_0C66AoO0hqw8HwNaBY
       short-id: 6ba85179e30d4fc2
+  - name: azure-sg-tuic
+    type: tuic
+    server: hermanwen.xyz
+    port: 30784
+    version: 5
+    uuid: 6f0fe415-8803-428a-a336-97b9300a9b37
+    password: 6f0fe415-8803-428a-a336-97b9300a9b37
+    skip-cert-verify: true
+    sni: ''
+    alpn:
+      - h3
   - name: azure-sg-backup-trojan
     type: trojan
     server: wenhelog.com
@@ -140,6 +151,17 @@ proxies:
     reality-opts:
       public-key: 5VHIfCIY5FnLffkrbGCKVbMzfFfFQCnM3mxIAdkwpXw
       short-id: 6ba85179e30d4fc2
+  - name: azure-sg-backup-tuic
+    type: tuic
+    server: wenhelog.com
+    port: 28177
+    version: 5
+    uuid: df9121df-dc55-4354-b333-17a3ed6a2ec0
+    password: df9121df-dc55-4354-b333-17a3ed6a2ec0
+    skip-cert-verify: true
+    sni: ''
+    alpn:
+      - h3
 
 proxy-groups:
   # 代理的转发链, 在 proxies 中不应该包含 relay. 不支持 UDP.
@@ -161,7 +183,9 @@ proxy-groups:
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Want_Want_Letter.png
     proxies:
+      - azure-sg-tuic
       - azure-sg-vless
+      - azure-sg-backup-tuic
       - azure-sg-backup-vless
       - azure-sg-backup-trojan
       - azure-us-vless
@@ -173,10 +197,12 @@ proxy-groups:
     type: url-test
     proxies:
       - azure-sg-vless
+      - azure-sg-backup-tuic
       - azure-sg-backup-vless
       - azure-sg-backup-trojan
       - azure-us-vless
       - azure-hk-vless
+      - azure-sg-tuic
     url: "http://www.gstatic.com/generate_204"
     interval: 300
   # fallback 可以尽量按照用户书写的服务器顺序，在确保服务器可用的情况下，自动选择服务器
@@ -184,10 +210,12 @@ proxy-groups:
     type: fallback
     proxies:
       - azure-sg-vless
+      - azure-sg-backup-tuic
       - azure-sg-backup-vless
       - azure-sg-backup-trojan
       - azure-hk-vless
       - azure-us-vless
+      - azure-sg-tuic
     url: "http://www.gstatic.com/generate_204"
     interval: 300
   # # load-balance 可以使相同 eTLD 请求在同一条代理线路上
@@ -204,7 +232,9 @@ proxy-groups:
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Server.png
     proxies:
       - PROXY
+      - azure-sg-tuic
       - azure-sg-vless
+      - azure-sg-backup-tuic
       - azure-sg-backup-vless
       - azure-sg-backup-trojan
       - azure-us-vless
@@ -218,7 +248,9 @@ proxy-groups:
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Proxy.png
     proxies:
       - Fallback
+      - azure-sg-tuic
       - azure-sg-vless
+      - azure-sg-backup-tuic
       - azure-sg-backup-vless
       - azure-sg-backup-trojan
       - azure-us-vless
