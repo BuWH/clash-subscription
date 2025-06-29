@@ -130,14 +130,6 @@ proxies:
     sni: ''
     alpn:
       - h3
-  - name: azure-sg-backup-trojan
-    type: trojan
-    server: wenhelog.com
-    port: 35011
-    password: df9121df-dc55-4354-b333-17a3ed6a2ec0
-    client-fingerprint: chrome
-    udp: true
-    sni: wenhelog.com
   - name: azure-sg-backup-vless
     type: vless
     server: 20.198.253.47
@@ -187,7 +179,6 @@ proxy-groups:
       - azure-sg-vless
       - azure-sg-backup-tuic
       - azure-sg-backup-vless
-      - azure-sg-backup-trojan
       - azure-us-vless
       - azure-hk-vless
       - TAG-select
@@ -196,13 +187,12 @@ proxy-groups:
   - name: Fastest
     type: url-test
     proxies:
+      - azure-sg-tuic
       - azure-sg-vless
       - azure-sg-backup-tuic
       - azure-sg-backup-vless
-      - azure-sg-backup-trojan
       - azure-us-vless
       - azure-hk-vless
-      - azure-sg-tuic
     url: "http://www.gstatic.com/generate_204"
     interval: 300
   # fallback 可以尽量按照用户书写的服务器顺序，在确保服务器可用的情况下，自动选择服务器
@@ -212,7 +202,6 @@ proxy-groups:
       - azure-sg-vless
       - azure-sg-backup-tuic
       - azure-sg-backup-vless
-      - azure-sg-backup-trojan
       - azure-hk-vless
       - azure-us-vless
       - azure-sg-tuic
@@ -236,7 +225,6 @@ proxy-groups:
       - azure-sg-vless
       - azure-sg-backup-tuic
       - azure-sg-backup-vless
-      - azure-sg-backup-trojan
       - azure-us-vless
       - azure-hk-vless
       - TAG-select
@@ -248,11 +236,10 @@ proxy-groups:
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Proxy.png
     proxies:
       - Fallback
-      - azure-sg-tuic
       - azure-sg-vless
-      - azure-sg-backup-tuic
+      - azure-sg-tuic
       - azure-sg-backup-vless
-      - azure-sg-backup-trojan
+      - azure-sg-backup-tuic
       - azure-us-vless
       - azure-hk-vless
       - TAG-select
@@ -279,12 +266,6 @@ rule-providers:
     url: "http://script.hub/file/_start_/https://limbopro.com/Adblock4limbo.list/_end_/Adblock4limbo.list?type=rule-set&target=stash-rule-set&del=true"
     path: ./ruleset/dunai_ad.yaml
     interval: 86400
-  anti_ad:
-    behavior: domain
-    format: yaml
-    url: "http://script.hub/file/_start_/https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-surge2.txt/_end_/anti-ad-surge2.list?type=rule-set&target=stash-rule-set&del=true"
-    path: ./ruleset/anti_ad.yaml
-    interval: 86400
   reject:
     behavior: domain
     format: yaml
@@ -309,12 +290,6 @@ rule-providers:
     url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/apple.txt"
     path: ./ruleset/apple.yaml
     interval: 86400
-  google:
-    behavior: domain
-    format: yaml
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/google.txt"
-    path: ./ruleset/google.yaml
-    interval: 86400
   proxy:
     behavior: domain
     format: yaml
@@ -326,30 +301,6 @@ rule-providers:
     format: yaml
     url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/direct.txt"
     path: ./ruleset/direct.yaml
-    interval: 86400
-  tld-not-cn:
-    behavior: domain
-    format: yaml
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/tld-not-cn.txt"
-    path: ./ruleset/tld-not-cn.yaml
-    interval: 86400
-  telegramcidr:
-    behavior: ipcidr
-    format: yaml
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/telegramcidr.txt"
-    path: ./ruleset/telegramcidr.yaml
-    interval: 86400
-  cncidr:
-    behavior: ipcidr
-    format: yaml
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/cncidr.txt"
-    path: ./ruleset/cncidr.yaml
-    interval: 86400
-  lancidr:
-    behavior: ipcidr
-    format: yaml
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt"
-    path: ./ruleset/lancidr.yaml
     interval: 86400
   openai:
     type: http
@@ -396,7 +347,6 @@ rule-providers:
 rules:
   # REJECT
   - RULE-SET,dunai_ad,REJECT
-  - RULE-SET,anti_ad,REJECT
   - RULE-SET,reject,REJECT
   # CRYPTO
   - RULE-SET,crypto,CRYPTO
@@ -410,16 +360,12 @@ rules:
   - RULE-SET,icloud,APPLE
   - RULE-SET,apple,APPLE
   # PROXY
-  - RULE-SET,google,PROXY
   - RULE-SET,reddit,PROXY
   - RULE-SET,linkedin,PROXY
   - RULE-SET,proxy,PROXY
-  - RULE-SET,telegramcidr,PROXY
   # DIRECT
   - RULE-SET,applications,DIRECT
   - RULE-SET,direct,DIRECT
-  - RULE-SET,lancidr,DIRECT
-  - RULE-SET,cncidr,DIRECT
   - GEOIP,LAN,DIRECT
   - GEOIP,CN,DIRECT
   - IP-CIDR,192.168.0.0/8,DIRECT
