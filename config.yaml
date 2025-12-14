@@ -119,17 +119,6 @@ proxies:
     reality-opts:
       public-key: _2Z1O38_btRhhchpmIenke88_0C66AoO0hqw8HwNaBY
       short-id: 6ba85179e30d4fc2
-  - name: azure-sg-tuic
-    type: tuic
-    server: hermanwen.xyz
-    port: 30784
-    version: 5
-    uuid: 6f0fe415-8803-428a-a336-97b9300a9b37
-    password: 6f0fe415-8803-428a-a336-97b9300a9b37
-    skip-cert-verify: true
-    sni: ''
-    alpn:
-      - h3
   - name: azure-sg-backup-vless
     type: vless
     server: 20.198.253.47
@@ -143,17 +132,6 @@ proxies:
     reality-opts:
       public-key: 5VHIfCIY5FnLffkrbGCKVbMzfFfFQCnM3mxIAdkwpXw
       short-id: 6ba85179e30d4fc2
-  - name: azure-sg-backup-tuic
-    type: tuic
-    server: wenhelog.com
-    port: 28177
-    version: 5
-    uuid: df9121df-dc55-4354-b333-17a3ed6a2ec0
-    password: df9121df-dc55-4354-b333-17a3ed6a2ec0
-    skip-cert-verify: true
-    sni: ''
-    alpn:
-      - h3
 
 proxy-groups:
   # 代理的转发链, 在 proxies 中不应该包含 relay. 不支持 UDP.
@@ -175,9 +153,7 @@ proxy-groups:
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Want_Want_Letter.png
     proxies:
-      - azure-sg-tuic
       - azure-sg-vless
-      - azure-sg-backup-tuic
       - azure-sg-backup-vless
       - azure-us-vless
       - azure-hk-vless
@@ -186,9 +162,7 @@ proxy-groups:
   - name: Fastest
     type: url-test
     proxies:
-      - azure-sg-tuic
       - azure-sg-vless
-      - azure-sg-backup-tuic
       - azure-sg-backup-vless
       - azure-us-vless
       - azure-hk-vless
@@ -199,11 +173,9 @@ proxy-groups:
     type: fallback
     proxies:
       - azure-sg-vless
-      - azure-sg-backup-tuic
       - azure-sg-backup-vless
       - azure-hk-vless
       - azure-us-vless
-      - azure-sg-tuic
     url: "http://www.gstatic.com/generate_204"
     interval: 300
   # # load-balance 可以使相同 eTLD 请求在同一条代理线路上
@@ -220,9 +192,7 @@ proxy-groups:
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Server.png
     proxies:
       - PROXY
-      - azure-sg-tuic
       - azure-sg-vless
-      - azure-sg-backup-tuic
       - azure-sg-backup-vless
       - azure-us-vless
       - azure-hk-vless
@@ -245,9 +215,7 @@ proxy-groups:
     proxies:
       - Fallback
       - azure-sg-vless
-      - azure-sg-tuic
       - azure-sg-backup-vless
-      - azure-sg-backup-tuic
       - azure-us-vless
       - azure-hk-vless
 # test:
