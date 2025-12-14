@@ -181,7 +181,6 @@ proxy-groups:
       - azure-sg-backup-vless
       - azure-us-vless
       - azure-hk-vless
-      - TAG-select
       - DIRECT
   # url-test 可以自动选择与指定 URL 测速后，延迟最短的服务器
   - name: Fastest
@@ -227,7 +226,6 @@ proxy-groups:
       - azure-sg-backup-vless
       - azure-us-vless
       - azure-hk-vless
-      - TAG-select
       - DIRECT
   - name: HSBC
     type: select
@@ -252,16 +250,6 @@ proxy-groups:
       - azure-sg-backup-tuic
       - azure-us-vless
       - azure-hk-vless
-      - TAG-select
-  - name: TAG-select
-    type: select
-    use:
-      - TAG
-proxy-providers:
-  TAG:
-    url: https://huaikhwang.central-world.org/api/v1/trails/bolster?token=ff9d01f639de98c709269af5b6b11713
-    interval: 3600
-    filter: '家宽'
 # test:
 #   type: file
 #   path: /test.yaml
