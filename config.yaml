@@ -82,17 +82,17 @@ dns:
 proxies:
   - name: hk-vless
     type: vless
-    server: 20.2.232.71
-    port: 24758
-    uuid: 70213703-9946-4330-b8bc-7c32ad590cc8
+    server: 52.184.83.193
+    port: 443
+    uuid: 0b34468b-4e56-4d38-a1a9-1d347c58f32c
     flow: xtls-rprx-vision
     network: tcp
     tls: true
     client-fingerprint: chrome
-    sni: download-installer.cdn.mozilla.net
+    servername: gateway.icloud.com
     reality-opts:
-      public-key: _PHCvG_gMXh2onlOU6cjisH97Lfl6rrh-PCxBY4rmEQ
-      short-id: 6ba85179e30d4fc2
+      public-key: FxJM4tzTyB8HYT1HwxKw3gytjXNg6WQ0WPuFK9ye3C4
+      short-id: 11a34510
   - name: us-vless
     type: vless
     server: 20.14.85.196
