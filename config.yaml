@@ -64,21 +64,18 @@ dns:
     - 114.114.114.114
   # 支持 UDP / TCP / DoT / DoH / DoQ 协议的 DNS 服务，可以指明具体的连接端口号。
   # 所有 DNS 请求将直接发送到服务器，不经过任何代理。
-  # Stash 会使用最先获得的解析记录回复 DNS 请求
+  # Stash 会并发请求所有服务器，采用最快响应的结果
   nameserver:
-    - 223.5.5.5
-    - 114.114.114.114
-    # 不建议配置超过 2 个 DNS 服务器，会增加系统功耗
-    - https://doh.pub/dns-query
-    - https://dns.alidns.com/dns-query
+    - 223.5.5.5                     # 阿里DNS - 中国网站快
+    - 114.114.114.114               # 腾讯DNS - 中国网站快
+    - https://1.1.1.1/dns-query    # Cloudflare - 国外网站快
+    - https://8.8.8.8/dns-query    # Google DNS - 备用
  
   # 跳过证书验证，解决部分兼容性问题 https://help.nextdns.io/t/g9hdkjz
   skip-cert-verify: true
 
   enhanced-mode: fake-ip
  
-  # DNS 查询跟随代理规则
-  follow-rule: true
 proxies:
   - name: hk-vless
     type: vless
