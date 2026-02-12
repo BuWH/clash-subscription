@@ -61,11 +61,13 @@ dns:
   # 仅填写 DNS 服务器的 IP 地址
   default-nameserver:
     - 223.5.5.5
+    - 119.29.29.29   # 腾讯DNSPod（推荐添加）
     - 114.114.114.114
   # 支持 UDP / TCP / DoT / DoH / DoQ 协议的 DNS 服务，可以指明具体的连接端口号。
   # 所有 DNS 请求将直接发送到服务器，不经过任何代理。
   # Stash 会并发请求所有服务器，采用最快响应的结果
   nameserver:
+    - https://doh.pub/dns-query    # 腾讯DNSPod
     - https://223.5.5.5/dns-query  # 阿里DNS - 中国网站快
     - https://1.1.1.1/dns-query    # Cloudflare - 国外网站快
     - https://8.8.8.8/dns-query    # Google DNS - 备用
