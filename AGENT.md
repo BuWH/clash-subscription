@@ -41,6 +41,19 @@ ssh hk-b1ls
 ssh uc-c
 ```
 
+## Surge Modules
+
+Modules cannot be added via the config file. They must be installed through the Surge app UI (install with URL) or placed as local `.sgmodule` files in the profile directory.
+
+Installed modules:
+
+| Module | URL |
+|--------|-----|
+| Skip Proxy Lists | `https://raw.githubusercontent.com/mieqq/mieqq/master/skip-proxy-lists.sgmodule` |
+| IP Info Panel | `https://raw.githubusercontent.com/cc63/Surge/main/Module/Panel/IP-info/Moore/IP-info.sgmodule` |
+| Net-X Panel | `https://raw.githubusercontent.com/xream/scripts/main/surge/modules/network-info/net-lsp-x.sgmodule` |
+| BiliBili ADBlock | `https://github.com/BiliUniverse/ADBlock/releases/latest/download/BiliBili.ADBlock.sgmodule` |
+
 ## Setting Up New Services on VPS
 
 Before installing any new service on a VPS:
