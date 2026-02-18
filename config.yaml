@@ -78,7 +78,7 @@ dns:
   enhanced-mode: fake-ip
  
 proxies:
-  - name: hk-vless
+  - name: hk-b1ls-vless
     type: vless
     server: 52.184.83.193
     port: 443
@@ -91,7 +91,7 @@ proxies:
     reality-opts:
       public-key: FxJM4tzTyB8HYT1HwxKw3gytjXNg6WQ0WPuFK9ye3C4
       short-id: 11a34510
-  - name: us-vless
+  - name: uc-c-vless
     type: vless
     server: 20.14.85.196
     port: 10917
@@ -104,7 +104,7 @@ proxies:
     reality-opts:
       public-key: XMdi3nQLeIvHOiKaeMOk4vVwZbJe1GVHVWlBmwBEsjQ
       short-id: 6ba85179e30d4fc2
-  - name: sg-vless
+  - name: sg-backup-vless
     type: vless
     server: 20.198.253.47
     port: 18255
@@ -117,7 +117,7 @@ proxies:
     reality-opts:
       public-key: 5VHIfCIY5FnLffkrbGCKVbMzfFfFQCnM3mxIAdkwpXw
       short-id: 6ba85179e30d4fc2
-  - name: sg-agent
+  - name: sg-agent-vless
     type: vless
     server: 20.188.112.113
     port: 443
@@ -130,13 +130,6 @@ proxies:
     reality-opts:
       public-key: 5JuE6e1d4l2XSCordWJJ05ZtIoQ2IKnfXBnwgXK-aGA
       short-id: 0f233cc4
-  - name: sg-snell
-    type: snell
-    server: 20.198.253.47
-    port: 43721
-    psk: gMm/UI8JuQPduQnFNc4GIhnGWuK1MmflZcykFU2rfVU=
-    version: 5
-    udp: true
 
 proxy-groups:
   # 代理的转发链, 在 proxies 中不应该包含 relay. 不支持 UDP.
@@ -158,32 +151,29 @@ proxy-groups:
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Want_Want_Letter.png
     proxies:
-      - sg-agent
-      - sg-snell
-      - sg-vless
-      - us-vless
-      - hk-vless
+      - sg-agent-vless
+      - sg-backup-vless
+      - uc-c-vless
+      - hk-b1ls-vless
       - DIRECT
   # url-test 可以自动选择与指定 URL 测速后，延迟最短的服务器
   - name: Fastest
     type: url-test
     proxies:
-      - sg-agent
-      - sg-snell
-      - sg-vless
-      - us-vless
-      - hk-vless
+      - sg-agent-vless
+      - sg-backup-vless
+      - uc-c-vless
+      - hk-b1ls-vless
     url: "http://www.gstatic.com/generate_204"
     interval: 300
   # fallback 可以尽量按照用户书写的服务器顺序，在确保服务器可用的情况下，自动选择服务器
   - name: Fallback
     type: fallback
     proxies:
-      - sg-agent
-      - sg-snell
-      - sg-vless
-      - hk-vless
-      - us-vless
+      - sg-agent-vless
+      - sg-backup-vless
+      - hk-b1ls-vless
+      - uc-c-vless
     url: "http://www.gstatic.com/generate_204"
     interval: 300
   # # load-balance 可以使相同 eTLD 请求在同一条代理线路上
@@ -200,11 +190,10 @@ proxy-groups:
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Server.png
     proxies:
       - PROXY
-      - sg-agent
-      - sg-snell
-      - sg-vless
-      - us-vless
-      - hk-vless
+      - sg-agent-vless
+      - sg-backup-vless
+      - uc-c-vless
+      - hk-b1ls-vless
       - DIRECT
   - name: HSBC
     type: select
@@ -223,11 +212,10 @@ proxy-groups:
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Proxy.png
     proxies:
       - Fallback
-      - sg-agent
-      - sg-snell
-      - sg-vless
-      - us-vless
-      - hk-vless
+      - sg-agent-vless
+      - sg-backup-vless
+      - uc-c-vless
+      - hk-b1ls-vless
 # test:
 #   type: file
 #   path: /test.yaml
