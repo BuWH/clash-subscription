@@ -130,6 +130,13 @@ proxies:
     reality-opts:
       public-key: 5JuE6e1d4l2XSCordWJJ05ZtIoQ2IKnfXBnwgXK-aGA
       short-id: 0f233cc4
+  - name: sg-snell
+    type: snell
+    server: 20.198.253.47
+    port: 43721
+    psk: gMm/UI8JuQPduQnFNc4GIhnGWuK1MmflZcykFU2rfVU=
+    version: 5
+    udp: true
 
 proxy-groups:
   # 代理的转发链, 在 proxies 中不应该包含 relay. 不支持 UDP.
@@ -152,6 +159,7 @@ proxy-groups:
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Want_Want_Letter.png
     proxies:
       - sg-agent
+      - sg-snell
       - sg-vless
       - us-vless
       - hk-vless
@@ -161,6 +169,7 @@ proxy-groups:
     type: url-test
     proxies:
       - sg-agent
+      - sg-snell
       - sg-vless
       - us-vless
       - hk-vless
@@ -171,6 +180,7 @@ proxy-groups:
     type: fallback
     proxies:
       - sg-agent
+      - sg-snell
       - sg-vless
       - hk-vless
       - us-vless
@@ -191,6 +201,7 @@ proxy-groups:
     proxies:
       - PROXY
       - sg-agent
+      - sg-snell
       - sg-vless
       - us-vless
       - hk-vless
@@ -213,6 +224,7 @@ proxy-groups:
     proxies:
       - Fallback
       - sg-agent
+      - sg-snell
       - sg-vless
       - us-vless
       - hk-vless
