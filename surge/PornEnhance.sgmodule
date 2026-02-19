@@ -1,0 +1,55 @@
+#!name=PornEnhance Ad Blocker
+#!desc=Block ads on adult sites (MissAV, Jable, Pornhub, 91porn, 91porna, 18comic, Xvideos). Extracted from PornEnhance userscript.
+#!category=Ad Blocker
+#!homepage=https://github.com/BuWH/clash-subscription
+#!author=PornEnhance
+
+[Rule]
+# Pornhub - ad networks
+DOMAIN-SUFFIX,trafficjunky.com,REJECT
+DOMAIN,video.ktkjmp.com,REJECT
+
+# Jable.tv - ad networks (s.magsrv.com handled by Map Local)
+DOMAIN,cdn.tapioni.com,REJECT
+DOMAIN-SUFFIX,afcdn.net,REJECT
+
+# 18comic - ad links
+DOMAIN,s.zlinkp.com,REJECT
+DOMAIN,jmcomicgo.me,REJECT
+
+[URL Rewrite]
+# Pornhub - block ad API requests
+^https?:\/\/[a-z]+\.pornhub\.com\/_xa\/ads_batch - reject
+^https?:\/\/[a-z]+\.pornhub\.com\/_xa\/ads\b - reject
+
+[Map Local]
+# Pornhub - return empty response for ad API
+^https?:\/\/[a-z]+\.pornhub\.com\/_xa\/ads data-type=text data="{}" status-code=200
+
+# Jable.tv - return empty JSON for splash ads
+^https?:\/\/s\.magsrv\.com\/splash\.php data-type=text data="{\"data\":[],\"ext\":[],\"layout\":{}}" status-code=200
+
+[MITM]
+hostname = %APPEND% *.missav.com, *.missav.ws, *.missav.ai, jable.tv, *.jable.tv, *.pornhub.com, 91porn.com, *.91porn.com, 91porna.com, *.91porna.com, *.18comic.org, *.18comic.vip, 18comic.org, 18comic.vip, *.xvideos.com, s.magsrv.com
+
+[Script]
+# MissAV - inject ad-hiding CSS
+MissAV AdBlock = type=http-response, pattern=^https?:\/\/(www\.)?missav\.(com|ws|ai)\/, requires-body=true, max-size=3145728, script-path=https://raw.githubusercontent.com/BuWH/clash-subscription/dev/surge/scripts/pornenhance-missav.js, script-update-interval=86400
+
+# Jable.tv - inject ad-hiding CSS
+Jable AdBlock = type=http-response, pattern=^https?:\/\/(www\.)?jable\.tv\/, requires-body=true, max-size=3145728, script-path=https://raw.githubusercontent.com/BuWH/clash-subscription/dev/surge/scripts/pornenhance-jable.js, script-update-interval=86400
+
+# Pornhub - inject ad-hiding CSS
+Pornhub AdBlock = type=http-response, pattern=^https?:\/\/[a-z]+\.pornhub\.com\/, requires-body=true, max-size=3145728, script-path=https://raw.githubusercontent.com/BuWH/clash-subscription/dev/surge/scripts/pornenhance-pornhub.js, script-update-interval=86400
+
+# 91porn - inject ad-hiding CSS
+91porn AdBlock = type=http-response, pattern=^https?:\/\/(www\.)?91porn\.com\/, requires-body=true, max-size=3145728, script-path=https://raw.githubusercontent.com/BuWH/clash-subscription/dev/surge/scripts/pornenhance-91porn.js, script-update-interval=86400
+
+# 91porna - inject ad-hiding CSS
+91porna AdBlock = type=http-response, pattern=^https?:\/\/(www\.)?91porna\.com\/, requires-body=true, max-size=3145728, script-path=https://raw.githubusercontent.com/BuWH/clash-subscription/dev/surge/scripts/pornenhance-91porna.js, script-update-interval=86400
+
+# 18comic - inject ad-hiding CSS
+18comic AdBlock = type=http-response, pattern=^https?:\/\/(www\.)?18comic\.(org|vip)\/, requires-body=true, max-size=3145728, script-path=https://raw.githubusercontent.com/BuWH/clash-subscription/dev/surge/scripts/pornenhance-18comic.js, script-update-interval=86400
+
+# Xvideos - inject ad-hiding CSS
+Xvideos AdBlock = type=http-response, pattern=^https?:\/\/(www\.)?xvideos\.com\/, requires-body=true, max-size=3145728, script-path=https://raw.githubusercontent.com/BuWH/clash-subscription/dev/surge/scripts/pornenhance-xvideos.js, script-update-interval=86400
