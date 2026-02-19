@@ -53,7 +53,6 @@ Installed modules:
 | IP Info Panel | `https://raw.githubusercontent.com/cc63/Surge/main/Module/Panel/IP-info/Moore/IP-info.sgmodule` |
 | Net-X Panel | `https://raw.githubusercontent.com/xream/scripts/main/surge/modules/network-info/net-lsp-x.sgmodule` |
 | BiliBili ADBlock | `https://github.com/BiliUniverse/ADBlock/releases/latest/download/BiliBili.ADBlock.sgmodule` |
-| PornEnhance Ad Blocker | `https://raw.githubusercontent.com/BuWH/clash-subscription/dev/surge/PornEnhance.sgmodule` |
 
 ## Setting Up New Services on VPS
 
