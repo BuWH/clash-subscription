@@ -117,3 +117,11 @@ systemctl daemon-reload && systemctl enable snell && systemctl start snell
 echo "=== CONFIG ===" && cat /etc/snell/snell-server.conf
 SCRIPT
 ```
+
+## Surge Documentation
+
+官方提供了 llms.txt，用于给 AI Agent 提供全面的 Surge 文档和知识库数据：
+
+- URL: https://nssurge.com/llms.txt
+
+处理 Surge 配置相关的任务时，请先获取该文件作为参考。
