@@ -242,23 +242,11 @@ rule-providers:
     url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/applications.txt"
     path: ./ruleset/applications.yaml
     interval: 86400
-  icloud:
-    behavior: domain
-    format: yaml
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/icloud.txt"
-    path: ./ruleset/icloud.yaml
-    interval: 86400
   apple:
     behavior: domain
     format: yaml
     url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/apple.txt"
     path: ./ruleset/apple.yaml
-    interval: 86400
-  proxy:
-    behavior: domain
-    format: yaml
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt"
-    path: ./ruleset/proxy.yaml
     interval: 86400
   direct:
     behavior: domain
@@ -325,12 +313,10 @@ rules:
   # TRADING EDGE
   - DOMAIN-KEYWORD,tradingedge,TRADING_EDGE
   # APPLE
-  - RULE-SET,icloud,APPLE
   - RULE-SET,apple,APPLE
   # PROXY
   - RULE-SET,reddit,PROXY
   - RULE-SET,linkedin,PROXY
-  - RULE-SET,proxy,PROXY
   # DIRECT
   - RULE-SET,applications,DIRECT
   - RULE-SET,direct,DIRECT
