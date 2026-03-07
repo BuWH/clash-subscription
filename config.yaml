@@ -297,6 +297,11 @@ rule-providers:
     path: ./ruleset/linkedin.yaml
     interval: 86400
 rules:
+  # Tencent Video - must be before ad blocking rules (l.qq.com is misclassified
+  # as ads in reject list but vi.l.qq.com and vd6.l.qq.com are required for video playback)
+  - DOMAIN,vi.l.qq.com,DIRECT
+  - DOMAIN,vd6.l.qq.com,DIRECT
+  - DOMAIN-SUFFIX,edgesrv.com,DIRECT
   # REJECT
   - RULE-SET,dunai_ad,REJECT
   - RULE-SET,reject,REJECT

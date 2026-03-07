@@ -125,3 +125,53 @@ SCRIPT
 - URL: https://nssurge.com/llms.txt
 
 处理 Surge 配置相关的任务时，请先获取该文件作为参考。
+
+## Surge Mac CLI
+
+Surge Mac 提供了 CLI 工具，路径为 `/Applications/Surge.app/Contents/Applications/surge-cli`。
+
+常用命令：
+
+| Command | Description |
+|---------|-------------|
+| `reload` | 重新加载当前配置 |
+| `switch-profile <name>` | 切换到指定配置 |
+| `stop` | 关闭 Surge |
+| `dump active` | 显示所有活跃连接 |
+| `dump request` | 显示最近的连接 |
+| `dump rule` | 显示所有生效的规则 |
+| `dump policy` | 显示所有代理和策略组 |
+| `dump dns` | 显示 DNS 缓存 |
+| `dump profile [original/effective]` | 显示原始/生效后的配置 |
+| `dump event` | 显示事件 |
+| `watch request` | 持续跟踪新请求 |
+| `test-policy <policy>` | 测试指定代理 |
+| `test-all-policies` | 测试所有代理 |
+| `test-group <group>` | 立即重新测试策略组 |
+| `kill <connection>` | 终止活跃连接 |
+| `flush dns` | 清空 DNS 缓存 |
+| `diagnostics` | 运行网络诊断 |
+| `set <key> <value>` | 修改环境设置 |
+| `set-log-level <level>` | 修改日志级别（不写入配置文件） |
+| `script evaluate <path> [mock-script-type] [timeout]` | 加载并执行脚本 |
+
+参数选项：
+
+- `--raw` -- 以 JSON 格式输出结果
+- `--remote/-r` -- 连接远程 Surge 实例，例如 `--remote password@192.168.2.2:6170`
+
+使用示例：
+
+```bash
+# 重新加载配置
+/Applications/Surge.app/Contents/Applications/surge-cli reload
+
+# 查看所有代理状态
+/Applications/Surge.app/Contents/Applications/surge-cli dump policy
+
+# 测试所有代理延迟
+/Applications/Surge.app/Contents/Applications/surge-cli test-all-policies
+
+# 以 JSON 格式输出活跃连接
+/Applications/Surge.app/Contents/Applications/surge-cli --raw dump active
+```
