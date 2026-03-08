@@ -296,12 +296,43 @@ rule-providers:
     url: "http://script.hub/file/_start_/https://github.com/blackmatrix7/ios_rule_script/raw/refs/heads/master/rule/Surge/LinkedIn/LinkedIn.list/_end_/LinkedIn.list?type=rule-set&target=stash-rule-set&del=true&jqEnabled=true"
     path: ./ruleset/linkedin.yaml
     interval: 86400
+  huya:
+    type: http
+    behavior: domain
+    format: text
+    url: "http://script.hub/file/_start_/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/HuYa/HuYa.list/_end_/HuYa.list?type=rule-set&target=stash-domain-set&del=true"
+    path: ./ruleset/huya.yaml
+    interval: 86400
+  douyu:
+    type: http
+    behavior: domain
+    format: text
+    url: "http://script.hub/file/_start_/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Douyu/Douyu.list/_end_/Douyu.list?type=rule-set&target=stash-domain-set&del=true"
+    path: ./ruleset/douyu.yaml
+    interval: 86400
+  bilibili:
+    type: http
+    behavior: classical
+    format: text
+    url: "http://script.hub/file/_start_/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/BiliBili/BiliBili.list/_end_/BiliBili.list?type=rule-set&target=stash-rule-set&del=true"
+    path: ./ruleset/bilibili.yaml
+    interval: 86400
+  tencent_video:
+    type: http
+    behavior: classical
+    format: text
+    url: "http://script.hub/file/_start_/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/TencentVideo/TencentVideo.list/_end_/TencentVideo.list?type=rule-set&target=stash-rule-set&del=true"
+    path: ./ruleset/tencent_video.yaml
+    interval: 86400
 rules:
-  # Tencent Video - must be before ad blocking rules (l.qq.com is misclassified
-  # as ads in reject list but vi.l.qq.com and vd6.l.qq.com are required for video playback)
+  # Streaming/video service whitelists - must be before ad blocking rules
+  # (reject list aggressively blocks functional domains like P2P, CDN, playback APIs)
+  - RULE-SET,tencent_video,DIRECT
+  - RULE-SET,huya,DIRECT
+  - RULE-SET,douyu,DIRECT
+  - RULE-SET,bilibili,DIRECT
   - DOMAIN,vi.l.qq.com,DIRECT
   - DOMAIN,vd6.l.qq.com,DIRECT
-  - DOMAIN-SUFFIX,edgesrv.com,DIRECT
   # REJECT
   - RULE-SET,dunai_ad,REJECT
   - RULE-SET,reject,REJECT
