@@ -225,9 +225,9 @@ proxy-groups:
 #     url: http://www.gstatic.com/generate_204
 rule-providers:
   dunai_ad:
-    behavior: domain
+    behavior: classical
     format: yaml
-    url: "http://script.hub/file/_start_/https://limbopro.com/Adblock4limbo.list/_end_/Adblock4limbo.list?type=rule-set&target=stash-domain-set&del=true"
+    url: "http://script.hub/file/_start_/https://limbopro.com/Adblock4limbo.list/_end_/Adblock4limbo.list?type=rule-set&target=stash-rule-set&del=true"
     path: ./ruleset/dunai_ad.yaml
     interval: 86400
   reject:
@@ -255,73 +255,63 @@ rule-providers:
     path: ./ruleset/direct.yaml
     interval: 86400
   openai:
-    type: http
-    behavior: domain
-    format: text
-    url: "http://script.hub/file/_start_/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/OpenAI/OpenAI.list/_end_/OpenAI.list?type=rule-set&target=stash-domain-set&del=true"
+    behavior: classical
+    format: yaml
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/OpenAI/OpenAI.yaml"
     path: ./ruleset/openai.yaml
     interval: 86400
   gemini:
-    type: http
-    behavior: domain
-    format: text
-    url: "http://script.hub/file/_start_/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Surge/Gemini/Gemini.list/_end_/Gemini.list?type=rule-set&target=stash-domain-set&del=true"
+    behavior: classical
+    format: yaml
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Gemini/Gemini.yaml"
     path: ./ruleset/gemini.yaml
     interval: 86400
   claude:
-    type: http
-    behavior: domain
-    format: text
-    url: "http://script.hub/file/_start_/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Claude/Claude.list/_end_/Claude.list?type=rule-set&target=stash-domain-set&del=true"
+    behavior: classical
+    format: yaml
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Claude/Claude.yaml"
     path: ./ruleset/claude.yaml
     interval: 86400
   crypto:
-    type: http
-    behavior: domain
-    format: text
-    url: "http://script.hub/file/_start_/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Crypto/Crypto.list/_end_/Crypto.list?type=rule-set&target=stash-domain-set&del=true"
+    behavior: classical
+    format: yaml
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Crypto/Crypto.yaml"
     path: ./ruleset/crypto.yaml
     interval: 86400
   reddit:
-    type: http
-    behavior: domain
-    format: text
-    url: "http://script.hub/file/_start_/https://github.com/blackmatrix7/ios_rule_script/raw/refs/heads/master/rule/Surge/Reddit/Reddit.list/_end_/Reddit.list?type=rule-set&target=stash-domain-set&del=true&jqEnabled=true"
+    behavior: classical
+    format: yaml
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Reddit/Reddit.yaml"
     path: ./ruleset/reddit.yaml
     interval: 86400
   linkedin:
-    type: http
-    behavior: domain
-    format: text
-    url: "http://script.hub/file/_start_/https://github.com/blackmatrix7/ios_rule_script/raw/refs/heads/master/rule/Surge/LinkedIn/LinkedIn.list/_end_/LinkedIn.list?type=rule-set&target=stash-domain-set&del=true&jqEnabled=true"
+    behavior: classical
+    format: yaml
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/LinkedIn/LinkedIn.yaml"
     path: ./ruleset/linkedin.yaml
     interval: 86400
   huya:
-    type: http
-    behavior: domain
-    format: text
-    url: "http://script.hub/file/_start_/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/HuYa/HuYa.list/_end_/HuYa.list?type=rule-set&target=stash-domain-set&del=true"
+    behavior: classical
+    format: yaml
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/HuYa/HuYa.yaml"
     path: ./ruleset/huya.yaml
     interval: 86400
   douyu:
-    type: http
-    behavior: domain
-    format: text
-    url: "http://script.hub/file/_start_/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Douyu/Douyu.list/_end_/Douyu.list?type=rule-set&target=stash-domain-set&del=true"
+    behavior: classical
+    format: yaml
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Douyu/Douyu.yaml"
     path: ./ruleset/douyu.yaml
     interval: 86400
   bilibili:
-    type: http
     behavior: classical
-    format: text
-    url: "http://script.hub/file/_start_/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/BiliBili/BiliBili.list/_end_/BiliBili.list?type=rule-set&target=stash-rule-set&del=true"
+    format: yaml
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/BiliBili/BiliBili.yaml"
     path: ./ruleset/bilibili.yaml
     interval: 86400
   tencent_video:
-    type: http
     behavior: classical
-    format: text
-    url: "http://script.hub/file/_start_/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/TencentVideo/TencentVideo.list/_end_/TencentVideo.list?type=rule-set&target=stash-rule-set&del=true"
+    format: yaml
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/TencentVideo/TencentVideo.yaml"
     path: ./ruleset/tencent_video.yaml
     interval: 86400
 rules:
