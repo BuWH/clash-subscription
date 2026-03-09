@@ -227,7 +227,7 @@ rule-providers:
   dunai_ad:
     behavior: domain
     format: yaml
-    url: "http://script.hub/file/_start_/https://limbopro.com/Adblock4limbo.list/_end_/Adblock4limbo.list?type=rule-set&target=stash-rule-set&del=true"
+    url: "http://script.hub/file/_start_/https://limbopro.com/Adblock4limbo.list/_end_/Adblock4limbo.list?type=rule-set&target=stash-domain-set&del=true"
     path: ./ruleset/dunai_ad.yaml
     interval: 86400
   reject:
@@ -272,28 +272,28 @@ rule-providers:
     type: http
     behavior: domain
     format: text
-    url: "http://script.hub/file/_start_/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Claude/Claude.list/_end_/Claude.list?type=rule-set&target=stash-rule-set&del=true"
+    url: "http://script.hub/file/_start_/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Claude/Claude.list/_end_/Claude.list?type=rule-set&target=stash-domain-set&del=true"
     path: ./ruleset/claude.yaml
     interval: 86400
   crypto:
     type: http
     behavior: domain
     format: text
-    url: "http://script.hub/file/_start_/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Crypto/Crypto.list/_end_/Crypto.list?type=rule-set&target=stash-rule-set&del=true"
+    url: "http://script.hub/file/_start_/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Crypto/Crypto.list/_end_/Crypto.list?type=rule-set&target=stash-domain-set&del=true"
     path: ./ruleset/crypto.yaml
     interval: 86400
   reddit:
     type: http
     behavior: domain
     format: text
-    url: "http://script.hub/file/_start_/https://github.com/blackmatrix7/ios_rule_script/raw/refs/heads/master/rule/Surge/Reddit/Reddit.list/_end_/Reddit.list?type=rule-set&target=stash-rule-set&del=true&jqEnabled=true"
+    url: "http://script.hub/file/_start_/https://github.com/blackmatrix7/ios_rule_script/raw/refs/heads/master/rule/Surge/Reddit/Reddit.list/_end_/Reddit.list?type=rule-set&target=stash-domain-set&del=true&jqEnabled=true"
     path: ./ruleset/reddit.yaml
     interval: 86400
   linkedin:
     type: http
     behavior: domain
     format: text
-    url: "http://script.hub/file/_start_/https://github.com/blackmatrix7/ios_rule_script/raw/refs/heads/master/rule/Surge/LinkedIn/LinkedIn.list/_end_/LinkedIn.list?type=rule-set&target=stash-rule-set&del=true&jqEnabled=true"
+    url: "http://script.hub/file/_start_/https://github.com/blackmatrix7/ios_rule_script/raw/refs/heads/master/rule/Surge/LinkedIn/LinkedIn.list/_end_/LinkedIn.list?type=rule-set&target=stash-domain-set&del=true&jqEnabled=true"
     path: ./ruleset/linkedin.yaml
     interval: 86400
   huya:
