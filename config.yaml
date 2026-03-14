@@ -224,17 +224,11 @@ proxy-groups:
 #     interval: 36000
 #     url: http://www.gstatic.com/generate_204
 rule-providers:
-  dunai_ad:
+  adblock4limbo:
     behavior: classical
     format: yaml
-    url: "http://script.hub/file/_start_/https://limbopro.com/Adblock4limbo.list/_end_/Adblock4limbo.list?type=rule-set&target=stash-rule-set&del=true"
-    path: ./ruleset/dunai_ad.yaml
-    interval: 86400
-  reject:
-    behavior: domain
-    format: yaml
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt"
-    path: ./ruleset/reject.yaml
+    url: "http://script.hub/file/_start_/https://raw.githubusercontent.com/limbopro/Adblock4limbo/main/Adblock4limbo.list/_end_/Adblock4limbo.list?type=rule-set&target=stash-rule-set&del=true"
+    path: ./ruleset/adblock4limbo.yaml
     interval: 86400
   applications:
     behavior: classical
@@ -308,6 +302,12 @@ rule-providers:
     url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/BiliBili/BiliBili.yaml"
     path: ./ruleset/bilibili.yaml
     interval: 86400
+  microsoft:
+    behavior: classical
+    format: yaml
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Microsoft/Microsoft.yaml"
+    path: ./ruleset/microsoft.yaml
+    interval: 86400
   tencent_video:
     behavior: classical
     format: yaml
@@ -323,9 +323,8 @@ rules:
   - RULE-SET,bilibili,DIRECT
   - DOMAIN,vi.l.qq.com,DIRECT
   - DOMAIN,vd6.l.qq.com,DIRECT
-  # REJECT
-  - RULE-SET,dunai_ad,REJECT
-  - RULE-SET,reject,REJECT
+  # REJECT - Adblock4limbo (limbopro)
+  - RULE-SET,adblock4limbo,REJECT
   # CRYPTO
   - RULE-SET,crypto,CRYPTO
   # AI
@@ -340,6 +339,8 @@ rules:
   - DOMAIN-KEYWORD,tradingedge,TRADING_EDGE
   # APPLE
   - RULE-SET,apple,APPLE
+  # MICROSOFT
+  - RULE-SET,microsoft,PROXY
   # PROXY
   - RULE-SET,reddit,PROXY
   - RULE-SET,linkedin,PROXY
