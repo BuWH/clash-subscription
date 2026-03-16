@@ -333,6 +333,9 @@ rules:
   - RULE-SET,openai,AI_SERVICE
   - RULE-SET,gemini,AI_SERVICE
   - RULE-SET,claude,AI_SERVICE
+  # Shopify stores (checkout/login blocked by datacenter IP detection)
+  - DOMAIN-SUFFIX,graphpaper-tokyo.com,DIRECT
+  - DOMAIN-SUFFIX,myshopify.com,DIRECT
   # HSBC
   - DOMAIN-KEYWORD,hsbc,HSBC
   # TRADING EDGE
