@@ -2,6 +2,10 @@
 
 See [AGENT.md](../AGENT.md) for project context and VPS access details.
 
+## Default Proxy Tool
+
+When the user does not specify which proxy tool they are using, default to **Surge**. Always modify `surge/Default.conf` first, then sync changes to `config.yaml` (Stash) accordingly.
+
 ## Rule Ordering Principle
 
 Ad blocking rule lists (e.g. `Advertising_Domain.list`, Loyalsoldier `reject.txt`) are aggressive and frequently misclassify functional domains (P2P acceleration, CDN streams, playback APIs) as ads. This breaks video playback and live streaming.
