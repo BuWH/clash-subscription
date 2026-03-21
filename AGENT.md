@@ -118,6 +118,34 @@ echo "=== CONFIG ===" && cat /etc/snell/snell-server.conf
 SCRIPT
 ```
 
+## Network Troubleshooting
+
+### speedtest-cli
+
+Use `speedtest-cli` for CLI-based speed testing when diagnosing network issues.
+
+```bash
+# Quick test (ping, download, upload)
+speedtest-cli --simple
+
+# Full output with server info
+speedtest-cli
+
+# Test against a specific server (use --list to find server IDs)
+speedtest-cli --server <ID>
+```
+
+Install: `brew install speedtest-cli`
+
+### Diagnostic Workflow
+
+When Surge causes slowdowns, check in this order:
+
+1. **DNS health** -- `surge-cli dump dns --raw` -- look for entries > 500ms or with retries
+2. **REJECT mismatches** -- `surge-cli dump request --raw` -- search for `policyName: REJECT` on functional domains
+3. **Speedtest comparison** -- `speedtest-cli --simple` with Surge on vs off
+4. **DoH server reachability** -- `curl -s -o /dev/null -w "HTTP %{http_code}, time=%{time_total}s" "https://<DoH>/dns-query?dns=..."` -- any server > 5s is broken and should be removed from `encrypted-dns-server`
+
 ## Surge Documentation
 
 官方提供了 llms.txt，用于给 AI Agent 提供全面的 Surge 文档和知识库数据：
