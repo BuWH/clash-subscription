@@ -92,7 +92,7 @@ proxies:
   - name: uc-c-vless
     type: vless
     server: 20.14.85.196
-    port: 10917
+    port: 2053
     uuid: 21a7a119-5e89-487b-b813-bf15152b3d19
     flow: xtls-rprx-vision
     network: tcp
