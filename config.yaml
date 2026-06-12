@@ -203,6 +203,17 @@ proxy-groups:
     proxies:
       - DIRECT
       - PROXY
+  - name: Trade
+    type: select
+    proxies:
+      - PROXY
+      - Fallback
+      - Fastest
+      - sg-agent-vless
+      - sg-backup-vless
+      - uc-c-vless
+      - hk-b1ls-vless
+      - DIRECT
   # select 用来允许用户手动选择 代理服务器 或 服务器组
   # 您也可以使用 RESTful API 去切换服务器，这种方式推荐在 GUI 中使用
   - name: PROXY
@@ -324,6 +335,12 @@ rule-providers:
     url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/TencentVideo/TencentVideo.yaml"
     path: ./ruleset/tencent_video.yaml
     interval: 86400
+  futu:
+    behavior: classical
+    format: yaml
+    url: "http://script.hub/file/_start_/https://raw.githubusercontent.com/Gufiye/Rule/refs/heads/main/Futu.list/_end_/Futu.list?type=rule-set&target=stash-rule-set&del=true"
+    path: ./ruleset/futu.yaml
+    interval: 86400
 rules:
   # Streaming/video service whitelists - must be before ad blocking rules
   # (reject list aggressively blocks functional domains like P2P, CDN, playback APIs)
@@ -335,6 +352,8 @@ rules:
   - RULE-SET,sina,DIRECT
   - DOMAIN,vi.l.qq.com,DIRECT
   - DOMAIN,vd6.l.qq.com,DIRECT
+  # Futu / Moomoo trading - must be before REJECT and China direct rules
+  - RULE-SET,futu,Trade
   # REJECT - Adblock4limbo (limbopro)
   - RULE-SET,adblock4limbo,REJECT
   # CRYPTO
