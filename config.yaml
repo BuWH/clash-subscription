@@ -85,7 +85,7 @@ proxies:
     network: tcp
     tls: true
     client-fingerprint: chrome
-    servername: gateway.icloud.com
+    sni: gateway.icloud.com
     reality-opts:
       public-key: FxJM4tzTyB8HYT1HwxKw3gytjXNg6WQ0WPuFK9ye3C4
       short-id: 11a34510
@@ -124,7 +124,7 @@ proxies:
     network: tcp
     tls: true
     client-fingerprint: chrome
-    servername: gateway.icloud.com
+    sni: gateway.icloud.com
     reality-opts:
       public-key: 5JuE6e1d4l2XSCordWJJ05ZtIoQ2IKnfXBnwgXK-aGA
       short-id: 0f233cc4
