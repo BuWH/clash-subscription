@@ -93,6 +93,8 @@ proxies:
     type: vless
     server: 20.14.85.196
     port: 2053
+    benchmark-url: http://www.gstatic.com/generate_204
+    benchmark-timeout: 10
     uuid: 21a7a119-5e89-487b-b813-bf15152b3d19
     flow: xtls-rprx-vision
     network: tcp
