@@ -156,6 +156,14 @@ proxy-groups:
       - uc-c-vless
       - hk-b1ls-vless
       - DIRECT
+  - name: AEROLINEAS_ARGENTINAS
+    type: select
+    proxies:
+      - uc-c-vless
+      - sg-agent-vless
+      - sg-backup-vless
+      - hk-b1ls-vless
+      - DIRECT
   # url-test 可以自动选择与指定 URL 测速后，延迟最短的服务器
   - name: Fastest
     type: url-test
@@ -356,6 +364,9 @@ rules:
   - DOMAIN,vd6.l.qq.com,DIRECT
   # Futu / Moomoo trading - must be before REJECT and China direct rules
   - RULE-SET,futu,Trade
+  # Aerolineas Argentinas - the US node is the default selection
+  - DOMAIN-SUFFIX,aerolineas.com.ar,AEROLINEAS_ARGENTINAS
+  - DOMAIN-SUFFIX,aerolineas.com,AEROLINEAS_ARGENTINAS
   # REJECT - Adblock4limbo (limbopro)
   - RULE-SET,adblock4limbo,REJECT
   # CRYPTO
